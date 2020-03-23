@@ -22,7 +22,7 @@ int main()
 	//int num[] = { 3,2,3,4,4,3,4 };
 	int num[] = { 10,9,2,5,3,7,101,18 };
 	int size = sizeof(num) / sizeof(int);
-	Sort sort;
+	//Sort sort;
 	//—°‘Ò≈≈–Ú
 	//sort.select_sort(num, size);
 	//≤Â»Î≈≈–Ú
@@ -94,11 +94,12 @@ int main()
 	//huawei hw;
 	//hw.reverse("I am a boy");
 
-	//DP dp;
+	DP dp;
 	//dp.climbStairs(6);
 	//dp.maxSubArr(num, size);
 	//dp.minSubArr(num, size);
 	//dp.lengthOfLIS(num, size);
+	dp.LCS("13456778", "357486782");
 
 	system("pause");
 	return 0;

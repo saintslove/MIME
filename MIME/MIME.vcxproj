@@ -149,6 +149,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BitAlog.h" />
     <ClInclude Include="BT.h" />
     <ClInclude Include="DP.h" />
     <ClInclude Include="huawei.h" />
@@ -158,6 +159,7 @@
     <ClInclude Include="windows.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BitAlog.cpp" />
     <ClCompile Include="BT.cpp" />
     <ClCompile Include="DP.cpp" />
     <ClCompile Include="huawei.cpp" />

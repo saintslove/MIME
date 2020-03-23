@@ -1,6 +1,6 @@
 #include "BitAlog.h"
 #include <iostream>
-
+#include <string>
 
 BitAlog::BitAlog()
 {
@@ -107,7 +107,5 @@ void BitAlog::findPrim(int* a, int size)
 			sprintf_s(buff, 256, "num[%d] = %d", i, a[i]);
 			std::cout << std::string(buff) << std::endl;
 		}
-
-
 	}
 }
