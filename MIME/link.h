@@ -17,7 +17,7 @@ public:
 	Node* findLoopEnter(Node* node);
 	int findLoopNum(Node* node);
 	Node* reverseList(Node* pHead);
-	/*Node* deleteDupNode(Node* pHead);*/
+	Node* deleteDupNode(Node* pHead);
 	Node* findFirstComNode(Node* node,Node* node2);
 };
 

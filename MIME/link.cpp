@@ -133,40 +133,33 @@ link::Node* link::findFirstComNode(Node* node, Node* node2)
 
 
 
-// 
-// // 删除有序链表中重复的节点
-// windows::Node* windows::deleteDupNode(Node* pHead)
-// {
-// 	if (pHead == nullptr || pHead->next == nullptr)
-// 		return pHead;
-// 
-// 	Node* slow = pHead;
-// 	Node* fast = pHead->next;
-// 
-// 	//// 哨兵节点
-// 	//Node* pSentry;
-// 	//pSentry->value = -1;
-// 	//pSentry->next = slow;
-// 	Node* pPreNode = NULL;
-// 	bool isDelete = false;
-// 
-// 	while ()
-// 	{
-// 		if (slow->value == fast->value) {
-// 			fast++;
-// 			isDelete = true;
-// 		}
-// 		else {
-// 			if (isDelete) {
-// 				pPreNode->next = fast;
-// 			}
-// 			else {
-// 				pPreNode = slow;
-// 			}
-// 			isDelete = false;
-// 			slow = fast;
-// 			fast++;
-// 		}
-// 	}
-// 
-// }
+ 
+/************************************************************************/
+/* 删除有序链表中的重复元素
+
+/*	 Example 1:
+/*	 Input: 1->1->2
+/*	 Output: 1->2
+
+/*	 Example 2:
+/*	 Input: 1->1->1->2->3->3
+/*	 Output: 1->2->3                                                                     */
+/************************************************************************/
+ link::Node* link::deleteDupNode(Node* pHead)
+ {
+	 Node* p = pHead;
+
+	 if (p == nullptr)
+		 return pHead;
+	
+	 while (p && p->next)
+	 {
+		 if (p->value == p->next->value) {
+			 p->next = p->next->next;
+		 }
+		 else {
+			 p = p->next;
+		 }
+	 }
+	 return pHead;
+ }

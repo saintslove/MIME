@@ -346,7 +346,7 @@ void DP::LCS(std::string str1, std::string str2)
 /*		2
 /*		A与B的最长公共子串为 "lo"
 /************************************************************************/
-void LCSubString(std::string str1, std::string str2)
+void DP::LCSubString(std::string str1, std::string str2)
 {
 	std::vector <std::vector<int> > vec(str2.length()+1,std::vector<int>(str1.length()+1,0));
 	int max = 0;
