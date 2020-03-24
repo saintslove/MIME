@@ -1,5 +1,6 @@
 #pragma once
 #include <deque>
+#include <vector>
 
 struct TreeNode
 {
@@ -38,6 +39,9 @@ public:
 	void deleteTree(TreeNode* node);
 	void deleteTree();
 	void TreeDeepSum(TreeNode* node, int sum);
+	void BSTCommNode(TreeNode* node,int value1,int value2);
+	bool getNodePath(TreeNode* node, int value,std::vector<int>& path);
+	int getCommNode(TreeNode* node, int value1, int value2);
 private:
 	TreeNode* root;
 	std::deque<TreeNode*>* nodes;

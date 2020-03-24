@@ -75,7 +75,7 @@ void BT::printTreeMid(TreeNode* node)
 }
 
 /************************************************************************/
-/* 二叉树后续                                                                     */
+/* 二叉树后序                                                                     */
 /************************************************************************/
 void BT::printTreeLast(TreeNode* node)
 {
@@ -266,18 +266,22 @@ TreeNode* BT::deleteNode(TreeNode* root, int value)
 		return root;
 	}
 
+	// 命中节点左孩子为空，返回右孩子
 	if (root->left == nullptr || root->left->value == -1)
 	{
 		root->right->left = root->left;
 		return root->right;
 	}
-
+	// 命中节点右孩子为空，返回左孩子
 	if (root->right == nullptr || root->right->value == -1)
 	{
 		root->left->right = root->right;
 		return root->left;
 	}
 
+	// 命中节点左右孩子均有效，根据BST性质，有两种方案
+	// 1）找右子树中最小节点，替换命中节点
+	// 2) 找左子树中最大节点，替换命中节点
 	TreeNode* node = root->right;
 	while (node->left != nullptr && node->left->value != -1)
 	{
@@ -335,4 +339,103 @@ int BT::countNode(TreeNode* node)
 	{
 		return countNode(node->left) + 1 << depRight;
 	}
+}
+
+/************************************************************************/
+/*  对于一棵二叉搜索树，输入树中的两个节点，找出其最低父节点
+/*  例：
+/*			10
+/*		  5    20
+/*		1   6
+/*
+/*	对于节点6、20，其最低父节点为10
+/************************************************************************/
+void BT::BSTCommNode(TreeNode* node, int value1, int value2)
+{
+	TreeNode* currNode = node;
+	
+	// 当前节点小于最小节点，说明两个节点位于该节点右子树
+	while (currNode->value < value1)
+	{
+		currNode = currNode->right;
+	}
+	// 当前节点大于最大节点，说明两个节点位于该节点左子树
+	while (currNode->value > value2)
+	{
+		currNode = currNode->left;
+	}
+	// 当前节点位于两节点之间
+	std::cout << currNode->value << std::endl;
+}
+
+/************************************************************************/
+/* 一颗普通二叉树，获取达到该节点的路径    
+/* 采用深度优先遍历
+/************************************************************************/
+bool BT::getNodePath(TreeNode* node, int value, std::vector<int>& path)
+{
+	if (node == nullptr)
+		return false;
+	
+	bool find = false;
+
+	// 找到了目标节点
+	if (node->value == value)
+		return true;
+	
+	// 未找到节点，将该节点放入堆栈
+	path.push_back(node->value);
+	//for (auto c : path)
+	//	std::cout << c << "    ";
+	//std::cout << std::endl;
+
+	if (!find && node->left) {
+		// 左子树寻找目标节点
+		find = getNodePath(node->left, value, path);
+	}
+		
+	if (!find && node->right) {
+		// 右子树寻找目标节点
+		find = getNodePath(node->right, value, path);
+	}
+		
+
+	if (!find) {
+		// 左右子树均未找到
+		// 情况1：非叶子结点，且左右子树均未找到，说明该节点不在目标路径上
+		// 情况2：叶子结点，且非目标节点，说明该节点不在目标路径上
+		path.pop_back();
+	}
+	//std::cout << find << std::endl;
+	//for (auto c : path)
+	//	std::cout << c << "    ";
+	//std::cout << std::endl;
+	return find;
+}
+
+/************************************************************************/
+/* 一棵普通二叉树，给定两个子节点，找出其最低公共父节点   
+/*  例：
+/*			10
+/*		  5    20
+/*		1   6
+/*
+/*	对于节点6、20，其最低父节点为10
+/************************************************************************/
+int BT::getCommNode(TreeNode* node, int value1, int value2)
+{
+	std::vector<int> path1, path2;
+	bool find1 = getNodePath(node, value1, path1);
+	bool find2 = getNodePath(node, value2, path2);
+	int ret = 1 << 32 - 1;
+	if (find2 && find1) {
+		int index1 = 0;
+		int index2 = 0;
+		while (index1 < path1.size() && index2 < path2.size() && path1[index1] == path2[index2]) {
+			index1++;
+			index2++;
+		}
+		ret = path1[--index1];
+	}
+	return ret;
 }
