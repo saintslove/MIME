@@ -363,3 +363,4 @@ void LCSubString(std::string str1, std::string str2)
 		}
 	}
 }
+
