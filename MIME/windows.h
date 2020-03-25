@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+
 class windows
 {
 public:
@@ -19,5 +20,7 @@ public:
 	void lastK(int* a, int k, int size);
 	void removeDup(char* a, char* b);
 	void findAllCom(int* a, int size);
+	void findSum(int* a,int size,int value);
+	void findSumSub(int value);
 };
 

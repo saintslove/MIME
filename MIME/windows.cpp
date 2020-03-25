@@ -4,6 +4,8 @@
 #include <iostream>
 #include <functional>
 #include <cmath>
+#include <algorithm>
+#include <vector>
 
 windows::windows()
 {
@@ -158,3 +160,89 @@ void windows::findAllCom(int* a, int size)
 }
 
 
+/************************************************************************/
+/* 在一组递增序列中，查找是否两个元素和等于给定元素值
+/* 输入 【1,2,4,7,11,15】 存在2+7=9
+/* 采用滑窗处理
+/************************************************************************/
+
+bool increase(int i, int j)
+{
+	return i < j;
+}
+
+bool decrease(int i, int j) {
+	return i > j;
+}
+
+struct MyStruct
+{
+	bool operator()(int i, int j) {
+		return i > j;
+	}
+}MyStruct;
+
+void windows::findSum(int* a, int size, int value)
+{
+	//std::sort(a, a + size);
+	//std::vector<int> vec(a,a + size);
+	//std::sort(vec.begin(), vec.end());
+	//std::sort(vec.begin(), vec.end(), decrease);
+	//std::sort(vec.begin(), vec.end(), MyStruct);
+
+	int pHead = 0;
+	int pTail = size - 1;
+	int sum = 0;
+	while (pHead < pTail)
+	{
+		sum = a[pHead] + a[pTail];
+		if (sum == value) {
+			//std::cout << a[pHead] << "   " << a[pTail] << std::endl;
+			pHead++;
+			continue;
+		}
+		if (sum > value) {
+			pTail--;
+		}
+		else {
+			pHead++;
+		}
+	}
+}
+
+/************************************************************************/
+/* 给定一个正数s，打印所有元素和等于s的连续正数序列
+/* 输入 15 存在 1+2+3+4+5 = 4+5+6 = 7+8 = 15
+/* 采用滑窗处理                                                     
+/************************************************************************/
+void print(int head, int tail) {
+	while (head <= tail) {
+		std::cout << head++ << "  ";
+	}
+	std::cout << std::endl;
+}
+
+void windows::findSumSub(int value)
+{
+	int pHead = 1;
+	int pTail = 2;
+	int sum = pHead + pTail;
+	int mid = value / 2;
+	while (pHead <= mid)
+	{
+		if (sum == value)
+			print(pHead, pTail);
+		
+		while (sum > value && pHead <= mid)
+		{
+			sum -= pHead;
+			pHead++;
+
+			if (sum == value)
+				print(pHead, pTail);
+		}
+
+		pTail++;
+		sum += pTail;
+	}
+}

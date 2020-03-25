@@ -20,7 +20,8 @@ int main()
 	//int num[] = { 1,3,-1,-3,5,3,6,7 };
 	//int num[] = { 3,10,4,8,12,6,1,1,0,4,2 };
 	//int num[] = { 3,2,3,4,4,3,4 };
-	int num[] = { 10,9,2,5,3,7,101,18,17,16,15,14,13,12,11,20,21,22,23 };
+	//int num[] = { 10,9,2,5,3,7,101,18,17,16,15,14,13,12,11,20,21,22,23 };
+	int num[] = { 10,9,2,3,5,7,101,18,17,16,15,14,13,12,11,20,21,22,23 };
 	int size = sizeof(num) / sizeof(int);
 	//Sort sort;
 	//—°‘Ò≈≈–Ú
@@ -47,7 +48,8 @@ int main()
 	std::cout << std::endl;*/
 
 
-	BT bt(num, size);
+
+	//BT bt(num, size);
 	//bt.initTree(num, size);
 	//bt.printTreeFront(bt.getRoot());
 	//bt.printTreeMid(bt.getRoot());
@@ -67,9 +69,12 @@ int main()
 	//for (auto c : path)
 	//	std::cout << c << "  ";
 	//std::cout << std::endl;
-	int ret = bt.getCommNode(bt.getRoot(), 22, 7);
-	std::cout << ret << std::endl;
-	//windows ws;
+// 	int ret = bt.getCommNode(bt.getRoot(), 22, 7);
+// 	std::cout << ret << std::endl;
+
+
+
+	windows ws;
 	/*int b[20] = {0};
 	ws.getMaxWindows(num, b, 3, size);
 	for (int i = 0; i < 20; i++) {
@@ -94,11 +99,15 @@ int main()
 	//ws.getSum(3);
 	//ws.findN(num, size);
 	//ws.findAllCom(num, size);
+	//ws.findSum(num, size, 28);
+	ws.findSumSub(15);
 
 
 
 	//huawei hw;
 	//hw.reverse("I am a boy");
+
+
 
 	//DP dp;
 	//dp.climbStairs(6);
