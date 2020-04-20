@@ -199,6 +199,42 @@ void BT::TreeDeepSum(TreeNode* node, int sum)
 
 }
 
+
+/************************************************************************/
+/*  迭代获取符合需求的路径和                                                                  */
+/************************************************************************/
+void BT::findPath(TreeNode* node, int sum)
+{
+	if (node == nullptr)
+		return;
+	int curSum = 0;
+	std::vector<int> path;
+	TreeDeepSum(node,sum,curSum,path);
+}
+
+void BT::TreeDeepSum(TreeNode* node, int sum, int curSum, std::vector<int>& vec)
+{
+	if (node == nullptr)
+		return;
+
+	curSum += node->value;
+	vec.push_back(node->value);
+	if (node->left == nullptr && node->right == nullptr && curSum == sum) {
+		for (auto c : vec) {
+			std::cout << c << "  ";
+		}
+		std::cout << std::endl;
+	}
+
+	if (node->left)
+		TreeDeepSum(node->left, sum, curSum, vec);
+	if(node->right)
+		TreeDeepSum(node->right, sum, curSum, vec);
+
+	vec.pop_back();
+}
+
+
 /************************************************************************/
 /* 判断是否是二叉搜索树                                                                     */
 /************************************************************************/
@@ -210,6 +246,63 @@ bool BT::isBST(TreeNode* node, int min, int max)
 		return false;
 	return isBST(node->left, min, node->value) && isBST(node->right, node->value, max);
 }
+
+/************************************************************************/
+/* 输入一数组，判断该数组是否是二叉搜索树的后序遍历  
+/* 变形：输入一数组，判断该数组是否是二叉搜索树的前序遍历 
+/************************************************************************/
+bool BT::isBST(int* a, int size)
+{
+	if (a == NULL || size <= 0)
+		return false;
+	int root = a[size - 1];
+	int i = 0;
+	// 寻找左子树区间
+	while (i < size && a[i] < root) {
+		i++;
+	}
+
+	int j = i;
+	// 寻找右子树区间
+	while (j < size && a[j] > root) {
+		j++;
+	}
+	if (j != size - 1) {
+		return false;
+	}
+
+	bool left = isBST(a, i);
+	bool right = isBST(a + i, size - i + 1);
+	return left && right;
+}
+
+/************************************************************************/
+/*  给定一棵BST树，将其转换为双向链表
+/*  例：		5
+			3		10       ----》   1<->3<->4<->5<->10
+        1      4
+/************************************************************************/
+void BT::convertNode(TreeNode* node, TreeNode** lastNode)
+{
+	if (node == NULL)
+		return;
+
+	TreeNode* currNode = node;
+	if (currNode->left)
+		convertNode(currNode->left, lastNode);
+
+	currNode->left = *lastNode;
+	if (*lastNode)
+		(*lastNode)->right = currNode;
+
+	// 移动尾部节点
+	*lastNode = currNode;
+
+	if (currNode->right)
+		convertNode(currNode->right, lastNode);
+}
+
+
 
 /************************************************************************/
 /* 获取树跟节点                                                                     */
@@ -321,6 +414,31 @@ bool BT::isBlanceTree(TreeNode* node)
 	return isBlanceTree(node->right);
 }
 
+/************************************************************************/
+/* 逆向判断                                                                     */
+/************************************************************************/
+
+bool BT::isBlanceTree2(TreeNode* node, int *dep)
+{
+	if (node == nullptr) {
+		*dep = 0;
+		return true;
+	}
+
+	int left = 0;
+	int right = 0;
+	if (isBlanceTree2(node->left, &left) && isBlanceTree2(node->right, &right)) {
+		*dep = left > right ? left + 1 : right + 1;
+		return true;
+	}
+	return false;
+}
+
+bool BT::isBlanceTree2(TreeNode* node)
+{
+	int dep = 0;
+	return isBlanceTree2(node, &dep);
+}
 
 /************************************************************************/
 /*  计算完全二叉树节点数                                                                    */

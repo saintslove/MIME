@@ -74,7 +74,7 @@ int main()
 
 
 
-	windows ws;
+	//windows ws;
 	/*int b[20] = {0};
 	ws.getMaxWindows(num, b, 3, size);
 	for (int i = 0; i < 20; i++) {
@@ -100,12 +100,22 @@ int main()
 	//ws.findN(num, size);
 	//ws.findAllCom(num, size);
 	//ws.findSum(num, size, 28);
-	ws.findSumSub(15);
+	//ws.findSumSub(15);
 
 
 
-	//huawei hw;
+	huawei hw;
 	//hw.reverse("I am a boy");
+	//hw.removeLatest("adbcd");
+	//hw.sortStr();
+	//std::string str1 = "jufnsojxgsnswvrsfmwpagmjqidiwqhqfomcnfsqmrckcabmbykdpwwqwctoqctdfbmawplvjtsyqrckidbgnfgwohnraopnavlk";
+	//std::string str2 = "emrnerjquhqdthawyroaqxjxnjwiymnpdunrzmqkgbtaqrivkozwuowvvijrbbhcyzsyaqmhthrexnuighhcuawrwulcqilhaxaakdcfkekmegjbf";
+	//std::cout << str1.length() << "   " << str2.length() << std::endl;
+	//hw.getCommonStrLength(const_cast<char*>(str1.c_str()), const_cast<char*>(str2.c_str()));
+	//hw.IsAllCharExist(const_cast<char*>(str1.c_str()), const_cast<char*>(str2.c_str()));
+	//hw.removdDump(9876673);
+	//hw.findPrim(180);
+	hw.FirstNotRepeatingChar("google");
 
 
 
@@ -115,6 +125,8 @@ int main()
 	//dp.minSubArr(num, size);
 	//dp.lengthOfLIS(num, size);
 	//dp.LCS("13456778", "357486782");
+
+		
 
 	system("pause");
 	return 0;

@@ -31,7 +31,10 @@ public:
 	void DFS(TreeNode* node);
 	int TreeDeep(TreeNode* node);
 	bool isBST(TreeNode* node, int min, int max);
+	bool isBST(int* a, int size);
 	bool isBlanceTree(TreeNode* node);
+	bool isBlanceTree2(TreeNode* node, int *dep);
+	bool isBlanceTree2(TreeNode* node);
 	int countNode(TreeNode* node);
 	TreeNode* deleteNode(TreeNode* root, int value);
 	TreeNode* deleteMinNode(TreeNode* root);
@@ -39,9 +42,12 @@ public:
 	void deleteTree(TreeNode* node);
 	void deleteTree();
 	void TreeDeepSum(TreeNode* node, int sum);
+	void TreeDeepSum(TreeNode* node, int sum,int curSum, std::vector<int>& vec);
+	void findPath(TreeNode* node, int sum);
 	void BSTCommNode(TreeNode* node,int value1,int value2);
 	bool getNodePath(TreeNode* node, int value,std::vector<int>& path);
 	int getCommNode(TreeNode* node, int value1, int value2);
+	void convertNode(TreeNode* node, TreeNode** lastNode);
 private:
 	TreeNode* root;
 	std::deque<TreeNode*>* nodes;
